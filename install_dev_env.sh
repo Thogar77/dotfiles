@@ -32,6 +32,19 @@ if ! command_exists curl; then
 fi
 
 # -----------------------
+# Stow dotfiles
+# -----------------------
+DOTFILES_DIR="$HOME/dotfiles"
+
+if [ -d "$DOTFILES_DIR" ]; then
+  echo "Linking dotfiles with GNU Stow..."
+  cd "$DOTFILES_DIR"
+  stow nvim tmux zsh alacritty shell
+else
+  echo "Dotfiles directory not found: $DOTFILES_DIR"
+fi
+
+# -----------------------
 # Neovim
 # -----------------------
 if ! command_exists nvim; then
