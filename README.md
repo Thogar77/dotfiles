@@ -15,8 +15,7 @@ Managed with GNU Stow.
 
 ## Structure
 
-
-
+```
 dotfiles/
 ├── nvim/
 │   └── .config/nvim/
