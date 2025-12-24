@@ -20,5 +20,5 @@ size = 11
 
 [general]
 import = [
-  "~/.config/alacritty/themes/themes/hardhacker.toml"
+  "~/.config/alacritty/themes/themes/gotham.toml"
 ]
