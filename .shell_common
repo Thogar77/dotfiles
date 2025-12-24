@@ -1,0 +1,49 @@
+# =========================
+# Common shell config
+# bash + zsh compatible
+# =========================
+
+# ---------- Aliases ----------
+if [ -f "$HOME/.bash_aliases" ]; then
+  . "$HOME/.bash_aliases"
+fi
+
+# ---------- ROS 2 ----------
+# ROS setup (bash-compatible, works in zsh)
+# ---------- ROS 2 ----------
+if [ -f /opt/ros/jazzy/setup.bash ]; then
+  export ROS_DISTRO=jazzy
+  source /opt/ros/jazzy/setup.bash 2>/dev/null
+fi
+
+if [ -f /opt/ros/jazzy/setup.zsh ]; then
+  export ROS_DISTRO=jazzy
+  source /opt/ros/jazzy/setup.zsh 2>/dev/null
+fi
+
+export ROS_DOMAIN_ID=0
+
+# ---------- colcon ----------
+if [ -f /usr/share/colcon_cd/function/colcon_cd.sh ]; then
+  . /usr/share/colcon_cd/function/colcon_cd.sh
+  export _colcon_cd_root=/opt/ros/jazzy/
+fi
+
+# ---------- PATH ----------
+export PATH="$HOME/.local/bin:$PATH"
+
+# ---------- Rust ----------
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
+
+# ---------- Helix editor ----------
+export EDITOR=hx
+export VISUAL=hx
+
+# Runtime Helixa (ważne jeśli instalacja nie jest systemowa)
+if [ -d "$HOME/.config/helix/runtime" ]; then
+  export HELIX_RUNTIME="$HOME/.config/helix/runtime"
+elif [ -d "/usr/share/helix/runtime" ]; then
+  export HELIX_RUNTIME="/usr/share/helix/runtime"
+fi
