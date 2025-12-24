@@ -1,4 +1,4 @@
-```markdown
+
 # Dotfiles
 
 Personal dotfiles for a Linux development environment.
@@ -15,7 +15,7 @@ Managed with GNU Stow.
 
 ## Structure
 
-```
+
 
 dotfiles/
 ├── nvim/
@@ -77,5 +77,4 @@ stow -D nvim
 * tmux uses vim-style keybindings
 * zsh uses Powerlevel10k
 
-```
 
