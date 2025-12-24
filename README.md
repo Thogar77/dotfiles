@@ -77,10 +77,5 @@ stow -D nvim
 * tmux uses vim-style keybindings
 * zsh uses Powerlevel10k
 
-## License
-
-MIT
-
-```
 ```
 
