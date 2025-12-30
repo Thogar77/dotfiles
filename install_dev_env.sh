@@ -18,7 +18,7 @@ install_apt() {
 # update
 # -----------------------
 echo "Updating package list..."
-sudo apt update
+# sudo apt update
 
 # -----------------------
 # base tools
@@ -39,7 +39,7 @@ DOTFILES_DIR="$HOME/dotfiles"
 if [ -d "$DOTFILES_DIR" ]; then
   echo "Linking dotfiles with GNU Stow..."
   cd "$DOTFILES_DIR"
-  stow nvim tmux zsh alacritty shell
+  stow neovim tmux alacritty 
 else
   echo "Dotfiles directory not found: $DOTFILES_DIR"
 fi
@@ -122,7 +122,7 @@ fi
 # -----------------------
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "Setting zsh as default shell..."
-  chsh -s "$(which zsh)"
+ sudo chsh -s $(which zsh) j.kruczek@vumo.local
 fi
 
 echo "== DONE =="
