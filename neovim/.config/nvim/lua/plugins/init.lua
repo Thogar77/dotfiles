@@ -12,7 +12,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     require("plugins.snacks"),
-
+    require("plugins.formatting"),
+    require("plugins.lsp"),      
   { "craftzdog/solarized-osaka.nvim", priority = 1000, lazy = false, config = function() require("plugins.theme") end },
 
   { "neovim/nvim-lspconfig" },

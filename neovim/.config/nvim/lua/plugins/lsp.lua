@@ -1,40 +1,41 @@
-local on_attach = function(_, bufnr)
-  local map = vim.keymap.set
-  local opts = { buffer = bufnr, silent = true }
+return {
+  "neovim/nvim-lspconfig",
+  lazy = false,
+  config = function()
+    local lspconfig = require("lspconfig")
 
-  map("n", "gd", vim.lsp.buf.definition, opts)
-  map("n", "K", vim.lsp.buf.hover, opts)
-  map("n", "gr", vim.lsp.buf.references, opts)
-  map("n", "<leader>rn", vim.lsp.buf.rename, opts)
-  map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-end
+    local on_attach = function(_, bufnr)
+      local map = vim.keymap.set
+      local opts = { buffer = bufnr, silent = true }
 
-local caps = vim.lsp.protocol.make_client_capabilities()
+      map("n", "gd", vim.lsp.buf.definition, opts)
+      map("n", "K", vim.lsp.buf.hover, opts)
+      map("n", "gr", vim.lsp.buf.references, opts)
+      map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+      map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    end
 
-vim.lsp.config("lua_ls", {
-  on_attach = on_attach,
-  capabilities = caps,
-  settings = {
-    Lua = {
-      diagnostics = { globals = { "vim" } },
-    },
-  },
-})
+    local caps = vim.lsp.protocol.make_client_capabilities()
 
-vim.lsp.config("pyright", {
-  on_attach = on_attach,
-  capabilities = caps,
-})
+    lspconfig.clangd.setup({
+      on_attach = on_attach,
+      capabilities = caps,
+    })
 
-vim.lsp.config("clangd", {
-  on_attach = on_attach,
-  capabilities = caps,
-})
+    lspconfig.pyright.setup({
+      on_attach = on_attach,
+      capabilities = caps,
+    })
 
-vim.lsp.enable({ "lua_ls", "pyright", "clangd" })
-
-vim.diagnostic.config({
-  virtual_text = true,
-  severity_sort = true,
-})
+    lspconfig.lua_ls.setup({
+      on_attach = on_attach,
+      capabilities = caps,
+      settings = {
+        Lua = {
+          diagnostics = { globals = { "vim" } },
+        },
+      },
+    })
+  end,
+}
 
